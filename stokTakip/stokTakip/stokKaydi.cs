@@ -19,14 +19,42 @@ namespace stokTakip
             InitializeComponent();
         }
         sqlBaglantisi baglantım = new sqlBaglantisi();
-        private void simpleButton1_Click(object sender, EventArgs e)
+        private void stokKaydi_Load(object sender, EventArgs e)
         {
-            SqlCommand komut = new SqlCommand("insert into StokKartı (ProsesGrubu,GrupAdı,AltGrupAdı,MalzemeCinsi,Uzunluk,Miktar,İhtiyaç,Tedarikçi,Tarih,ParçaStokAdı) values('" + comboBox2.Text.ToString() + "','" + comboBox4.Text.ToString() + "','" + comboBox1.Text.ToString() + "','" + comboBox3.Text.ToString() + "','" + textBox1.Text.ToString() + "','" + textBox2.Text.ToString() + "','" + textBox3.Text.ToString() + "','" + textBox5.Text.ToString() + "','" + dateTimePicker1.Text.ToString() + "','" + textBox4.Text.ToString() + "')", baglantım.baglanti());
-            komut.ExecuteNonQuery();
+            SqlCommand komut = new SqlCommand("select * from ProsesGrubu", baglantım.baglanti());
+            SqlDataReader dr;
+            dr = komut.ExecuteReader();
+            while (dr.Read())
+            {
+                comboBox2.Items.Add(dr["ProsesGrubu"]);
+            }
 
 
+
+            SqlCommand komut1 = new SqlCommand("select * from Grup", baglantım.baglanti());
+            SqlDataReader dr1;
+            dr1 = komut1.ExecuteReader();
+            while (dr1.Read())
+            {
+                comboBox4.Items.Add(dr1[1].ToString());
+            }
+            SqlCommand komut2 = new SqlCommand("select * from AltGrup", baglantım.baglanti());
+            SqlDataReader dr2;
+            dr2 = komut2.ExecuteReader();
+            while (dr2.Read())
+            {
+                comboBox1.Items.Add(dr2[1].ToString());//[1]=kacıncı sütün oldunu gösterir 0 dan başlar sütünlar
+            }
+            SqlCommand komut3 = new SqlCommand("select * from MalzemeCinsi", baglantım.baglanti());
+            SqlDataReader dr3;
+            dr3 = komut3.ExecuteReader();
+            while (dr3.Read())
+            {
+                comboBox3.Items.Add(dr3[1].ToString());
+            }
         }
 
+        //SİLGİ
         private void simpleButton2_Click(object sender, EventArgs e)
         {
             textBox1.Clear();
@@ -40,9 +68,26 @@ namespace stokTakip
             comboBox4.Text = "Seçiniz..";
         }
 
-        private void stokKaydi_Load(object sender, EventArgs e)
-        {
 
+        private void simpleButton1_Click(object sender, EventArgs e)
+        {
+            if (comboBox2.Text == "Seçiniz..." || comboBox4.Text == "Seçiniz..." || comboBox1.Text == "Seçiniz..." || comboBox3.Text == "Seçiniz...." || textBox1.Text == "" || textBox2.Text == "" || textBox3.Text == "" || textBox4.Text == "" || textBox5.Text == "")
+            {
+                MessageBox.Show("EKSİK BİLGİ GİRDİNİZ !");
+            }
+            else
+            {//GİRİLEN BİLGİLERİ VERİ TABANINA KAYDEDER
+                SqlCommand komut = new SqlCommand("insert into tbl_stokKarti " +
+                    "(prosesGrubu,grupAdi,altGrupAdi,parcaStokAdi,malzemeCinsi,uzunluk,miktar,ihtiyac,tedarikci,tarih) values" +
+                    "('" + comboBox2.Text.ToString() + "','" + comboBox4.Text.ToString() + "','" + comboBox1.Text.ToString() + "','" + textBox4.Text.ToString() + "','" + comboBox3.Text.ToString() + "','" + textBox1.Text.ToString() + "','" + textBox2.Text.ToString() + "','" + textBox3.Text.ToString() + "','" + textBox5.Text.ToString() + "','" + dateTimePicker1.Value + "')", baglantım.baglanti());
+                komut.ExecuteNonQuery();
+                MessageBox.Show("KAYIT OLUŞTURULDU");
+                
+            }
+    
         }
+       
+
+      
     }
 }

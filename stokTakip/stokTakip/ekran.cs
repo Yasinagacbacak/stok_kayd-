@@ -45,5 +45,30 @@ namespace stokTakip
                 xtraTabbedMdiManager1.SelectedPage = xtraTabbedMdiManager1.Pages[frm2];
             }
         }
+        Form1 frm3;
+        private void barButtonitem5_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            //Form1 yeni = new Form1();
+            //yeni.Show();
+            //this.Hide();
+            if (frm3 == null || frm3.IsDisposed)
+            {
+                frm3 = new Form1();
+                frm3.MdiParent = this;
+                frm3.Show();
+            }
+            else
+            {
+                xtraTabbedMdiManager1.SelectedPage = xtraTabbedMdiManager1.Pages[frm3];
+            }
+
+
+
+
+
+
+
+
+        }
     }
 }
