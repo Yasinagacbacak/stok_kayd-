@@ -77,17 +77,34 @@ namespace stokTakip
             }
             else
             {//GİRİLEN BİLGİLERİ VERİ TABANINA KAYDEDER
+
                 SqlCommand komut = new SqlCommand("insert into tbl_stokKarti " +
                     "(prosesGrubu,grupAdi,altGrupAdi,parcaStokAdi,malzemeCinsi,uzunluk,miktar,ihtiyac,tedarikci,tarih) values" +
-                    "('" + comboBox2.Text.ToString() + "','" + comboBox4.Text.ToString() + "','" + comboBox1.Text.ToString() + "','" + textBox4.Text.ToString() + "','" + comboBox3.Text.ToString() + "','" + textBox1.Text.ToString() + "','" + textBox2.Text.ToString() + "','" + textBox3.Text.ToString() + "','" + textBox5.Text.ToString() + "','" + dateTimePicker1.Value + "')", baglantım.baglanti());
+                    "('" + comboBox2.Text+ "','" + comboBox4.Text+ "','" + comboBox1.Text + "','" + textBox4.Text + "','" + comboBox3.Text + "','" + textBox1.Text+ "','" + textBox2.Text + "','" + textBox3.Text + "','" + textBox5.Text+ "','" + dateTimePicker1.Text + "')", baglantım.baglanti());
                 komut.ExecuteNonQuery();
                 MessageBox.Show("KAYIT OLUŞTURULDU");
                 
             }
     
         }
-       
 
-      
+        private void simpleButton3_Click(object sender, EventArgs e)
+        {
+
+        }
+        //sadece rakam yazılabilir yapar
+        private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            {
+                e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
+            }
+        }
+
+        private void textBox3_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            {
+                e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
+            }
+        }
     }
 }

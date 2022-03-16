@@ -52,12 +52,15 @@ namespace stokTakip
             this.label10 = new System.Windows.Forms.Label();
             this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.simpleButton3 = new DevExpress.XtraEditors.SimpleButton();
+            this.comboBox5 = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // simpleButton1
             // 
             this.simpleButton1.ImageOptions.Image = global::stokTakip.Properties.Resources.add_32x32;
-            this.simpleButton1.Location = new System.Drawing.Point(514, 220);
+            this.simpleButton1.Location = new System.Drawing.Point(503, 114);
             this.simpleButton1.Margin = new System.Windows.Forms.Padding(4);
             this.simpleButton1.Name = "simpleButton1";
             this.simpleButton1.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
@@ -181,6 +184,7 @@ namespace stokTakip
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(244, 22);
             this.textBox2.TabIndex = 3;
+            this.textBox2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox2_KeyPress);
             // 
             // label7
             // 
@@ -199,6 +203,7 @@ namespace stokTakip
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(244, 22);
             this.textBox3.TabIndex = 3;
+            this.textBox3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox3_KeyPress);
             // 
             // textBox4
             // 
@@ -249,7 +254,7 @@ namespace stokTakip
             // simpleButton2
             // 
             this.simpleButton2.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton2.ImageOptions.Image")));
-            this.simpleButton2.Location = new System.Drawing.Point(514, 286);
+            this.simpleButton2.Location = new System.Drawing.Point(503, 180);
             this.simpleButton2.Name = "simpleButton2";
             this.simpleButton2.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
             this.simpleButton2.ShowToolTips = false;
@@ -265,11 +270,32 @@ namespace stokTakip
             this.dateTimePicker1.Size = new System.Drawing.Size(244, 22);
             this.dateTimePicker1.TabIndex = 12;
             // 
+            // simpleButton3
+            // 
+            this.simpleButton3.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton3.ImageOptions.Image")));
+            this.simpleButton3.Location = new System.Drawing.Point(503, 239);
+            this.simpleButton3.Name = "simpleButton3";
+            this.simpleButton3.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
+            this.simpleButton3.Size = new System.Drawing.Size(124, 29);
+            this.simpleButton3.TabIndex = 13;
+            this.simpleButton3.Text = "GÜNCELLE";
+            this.simpleButton3.Click += new System.EventHandler(this.simpleButton3_Click);
+            // 
+            // comboBox5
+            // 
+            this.comboBox5.FormattingEnabled = true;
+            this.comboBox5.Location = new System.Drawing.Point(414, 378);
+            this.comboBox5.Name = "comboBox5";
+            this.comboBox5.Size = new System.Drawing.Size(121, 24);
+            this.comboBox5.TabIndex = 14;
+            // 
             // stokKaydi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1067, 554);
+            this.Controls.Add(this.comboBox5);
+            this.Controls.Add(this.simpleButton3);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.simpleButton2);
             this.Controls.Add(this.label10);
@@ -325,6 +351,9 @@ namespace stokTakip
         private System.Windows.Forms.Label label10;
         private DevExpress.XtraEditors.SimpleButton simpleButton2;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private DevExpress.XtraEditors.SimpleButton simpleButton3;
+        private System.Windows.Forms.ComboBox comboBox5;
     }
 }
 
