@@ -16,7 +16,7 @@ namespace stokTakip
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ekran());
+            Application.Run(new Giris());
         }
     }
 }

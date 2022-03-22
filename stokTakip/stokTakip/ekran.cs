@@ -48,9 +48,7 @@ namespace stokTakip
         Form1 frm3;
         private void barButtonitem5_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            //Form1 yeni = new Form1();
-            //yeni.Show();
-            //this.Hide();
+
             if (frm3 == null || frm3.IsDisposed)
             {
                 frm3 = new Form1();
@@ -63,12 +61,39 @@ namespace stokTakip
             }
 
 
+        }
+        StokTalepleri frm4;
+        private void barButtonItem6_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            {
+                if (frm4 == null || frm4.IsDisposed)
+                {
+                    frm4 = new StokTalepleri();
+                    frm4.MdiParent = this;
+                    frm4.Show();
+                }
+                else
+                {
+                    xtraTabbedMdiManager1.SelectedPage = xtraTabbedMdiManager1.Pages[frm4];
+                }
+            }
 
-
-
-
-
-
+        }
+        Hesap_olustur frm5;
+        private void barButtonItem3_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            {
+                if (frm5 == null || frm5.IsDisposed)
+                {
+                    frm5 = new Hesap_olustur();
+                    frm5.MdiParent = this;
+                    frm5.Show();
+                }
+                else
+                {
+                    xtraTabbedMdiManager1.SelectedPage = xtraTabbedMdiManager1.Pages[frm5];
+                }
+            }
         }
     }
 }

@@ -30,44 +30,52 @@ namespace stokTakip
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(stokKaydi));
-            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
+            this.btn_kaydet = new DevExpress.XtraEditors.SimpleButton();
             this.label1 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cb_altgrup = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.cb_proses = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.cb_malzeme = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.comboBox4 = new System.Windows.Forms.ComboBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.cb_grup = new System.Windows.Forms.ComboBox();
+            this.txt_uzunluk = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txt_miktar = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.txt_ihtiyac = new System.Windows.Forms.TextBox();
+            this.txt_stokAdi = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.txt_tedarik = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.simpleButton3 = new DevExpress.XtraEditors.SimpleButton();
-            this.comboBox5 = new System.Windows.Forms.ComboBox();
+            this.cb_birim = new System.Windows.Forms.ComboBox();
+            this.xtraTabPage2 = new DevExpress.XtraTab.XtraTabPage();
+            this.xtraTabPage1 = new DevExpress.XtraTab.XtraTabPage();
+            this.gridControl1 = new DevExpress.XtraGrid.GridControl();
+            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.SuspendLayout();
             // 
-            // simpleButton1
+            // btn_kaydet
             // 
-            this.simpleButton1.ImageOptions.Image = global::stokTakip.Properties.Resources.add_32x32;
-            this.simpleButton1.Location = new System.Drawing.Point(503, 114);
-            this.simpleButton1.Margin = new System.Windows.Forms.Padding(4);
-            this.simpleButton1.Name = "simpleButton1";
-            this.simpleButton1.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
-            this.simpleButton1.Size = new System.Drawing.Size(178, 59);
-            this.simpleButton1.TabIndex = 0;
-            this.simpleButton1.Text = "STOK OLUŞTUR";
-            this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
+            this.btn_kaydet.ImageOptions.Image = global::stokTakip.Properties.Resources.add_32x32;
+            this.btn_kaydet.Location = new System.Drawing.Point(503, 114);
+            this.btn_kaydet.Margin = new System.Windows.Forms.Padding(4);
+            this.btn_kaydet.Name = "btn_kaydet";
+            this.btn_kaydet.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
+            this.btn_kaydet.Size = new System.Drawing.Size(178, 59);
+            this.btn_kaydet.TabIndex = 0;
+            this.btn_kaydet.Text = "STOK OLUŞTUR";
+            this.btn_kaydet.Click += new System.EventHandler(this.btn_kaydet_Click);
             // 
             // label1
             // 
@@ -79,15 +87,15 @@ namespace stokTakip
             this.label1.TabIndex = 1;
             this.label1.Text = "ALT GRUP";
             // 
-            // comboBox1
+            // cb_altgrup
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(163, 175);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(4);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(244, 24);
-            this.comboBox1.TabIndex = 2;
-            this.comboBox1.Text = "Seçiniz...";
+            this.cb_altgrup.FormattingEnabled = true;
+            this.cb_altgrup.Location = new System.Drawing.Point(163, 175);
+            this.cb_altgrup.Margin = new System.Windows.Forms.Padding(4);
+            this.cb_altgrup.Name = "cb_altgrup";
+            this.cb_altgrup.Size = new System.Drawing.Size(244, 24);
+            this.cb_altgrup.TabIndex = 2;
+            this.cb_altgrup.Text = "Seçiniz...";
             // 
             // label2
             // 
@@ -99,15 +107,15 @@ namespace stokTakip
             this.label2.TabIndex = 1;
             this.label2.Text = "PROSES GRUBU";
             // 
-            // comboBox2
+            // cb_proses
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(163, 89);
-            this.comboBox2.Margin = new System.Windows.Forms.Padding(4);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(244, 24);
-            this.comboBox2.TabIndex = 2;
-            this.comboBox2.Text = "Seçiniz...";
+            this.cb_proses.FormattingEnabled = true;
+            this.cb_proses.Location = new System.Drawing.Point(163, 89);
+            this.cb_proses.Margin = new System.Windows.Forms.Padding(4);
+            this.cb_proses.Name = "cb_proses";
+            this.cb_proses.Size = new System.Drawing.Size(244, 24);
+            this.cb_proses.TabIndex = 2;
+            this.cb_proses.Text = "Seçiniz...";
             // 
             // label3
             // 
@@ -119,15 +127,15 @@ namespace stokTakip
             this.label3.TabIndex = 1;
             this.label3.Text = "MALZEME CİNSİ";
             // 
-            // comboBox3
+            // cb_malzeme
             // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(165, 220);
-            this.comboBox3.Margin = new System.Windows.Forms.Padding(4);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(244, 24);
-            this.comboBox3.TabIndex = 2;
-            this.comboBox3.Text = "Seçiniz...";
+            this.cb_malzeme.FormattingEnabled = true;
+            this.cb_malzeme.Location = new System.Drawing.Point(165, 220);
+            this.cb_malzeme.Margin = new System.Windows.Forms.Padding(4);
+            this.cb_malzeme.Name = "cb_malzeme";
+            this.cb_malzeme.Size = new System.Drawing.Size(244, 24);
+            this.cb_malzeme.TabIndex = 2;
+            this.cb_malzeme.Text = "Seçiniz...";
             // 
             // label4
             // 
@@ -139,23 +147,24 @@ namespace stokTakip
             this.label4.TabIndex = 1;
             this.label4.Text = "GRUP";
             // 
-            // comboBox4
+            // cb_grup
             // 
-            this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Location = new System.Drawing.Point(163, 133);
-            this.comboBox4.Margin = new System.Windows.Forms.Padding(4);
-            this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(244, 24);
-            this.comboBox4.TabIndex = 2;
-            this.comboBox4.Text = "Seçiniz...";
+            this.cb_grup.FormattingEnabled = true;
+            this.cb_grup.Location = new System.Drawing.Point(163, 133);
+            this.cb_grup.Margin = new System.Windows.Forms.Padding(4);
+            this.cb_grup.Name = "cb_grup";
+            this.cb_grup.Size = new System.Drawing.Size(244, 24);
+            this.cb_grup.TabIndex = 2;
+            this.cb_grup.Text = "Seçiniz...";
             // 
-            // textBox1
+            // txt_uzunluk
             // 
-            this.textBox1.Location = new System.Drawing.Point(163, 314);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(244, 22);
-            this.textBox1.TabIndex = 3;
+            this.txt_uzunluk.Location = new System.Drawing.Point(163, 314);
+            this.txt_uzunluk.Margin = new System.Windows.Forms.Padding(4);
+            this.txt_uzunluk.Name = "txt_uzunluk";
+            this.txt_uzunluk.Size = new System.Drawing.Size(244, 22);
+            this.txt_uzunluk.TabIndex = 3;
+            this.txt_uzunluk.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
             // 
             // label5
             // 
@@ -177,14 +186,14 @@ namespace stokTakip
             this.label6.TabIndex = 1;
             this.label6.Text = "MİKTAR";
             // 
-            // textBox2
+            // txt_miktar
             // 
-            this.textBox2.Location = new System.Drawing.Point(163, 357);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(244, 22);
-            this.textBox2.TabIndex = 3;
-            this.textBox2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox2_KeyPress);
+            this.txt_miktar.Location = new System.Drawing.Point(163, 357);
+            this.txt_miktar.Margin = new System.Windows.Forms.Padding(4);
+            this.txt_miktar.Name = "txt_miktar";
+            this.txt_miktar.Size = new System.Drawing.Size(244, 22);
+            this.txt_miktar.TabIndex = 3;
+            this.txt_miktar.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox2_KeyPress);
             // 
             // label7
             // 
@@ -196,22 +205,22 @@ namespace stokTakip
             this.label7.TabIndex = 1;
             this.label7.Text = "İHTİYAÇ";
             // 
-            // textBox3
+            // txt_ihtiyac
             // 
-            this.textBox3.Location = new System.Drawing.Point(163, 402);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(244, 22);
-            this.textBox3.TabIndex = 3;
-            this.textBox3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox3_KeyPress);
+            this.txt_ihtiyac.Location = new System.Drawing.Point(163, 402);
+            this.txt_ihtiyac.Margin = new System.Windows.Forms.Padding(4);
+            this.txt_ihtiyac.Name = "txt_ihtiyac";
+            this.txt_ihtiyac.Size = new System.Drawing.Size(244, 22);
+            this.txt_ihtiyac.TabIndex = 3;
+            this.txt_ihtiyac.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox3_KeyPress);
             // 
-            // textBox4
+            // txt_stokAdi
             // 
-            this.textBox4.Location = new System.Drawing.Point(163, 270);
-            this.textBox4.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(244, 22);
-            this.textBox4.TabIndex = 6;
+            this.txt_stokAdi.Location = new System.Drawing.Point(163, 270);
+            this.txt_stokAdi.Margin = new System.Windows.Forms.Padding(4);
+            this.txt_stokAdi.Name = "txt_stokAdi";
+            this.txt_stokAdi.Size = new System.Drawing.Size(244, 22);
+            this.txt_stokAdi.TabIndex = 6;
             // 
             // label8
             // 
@@ -223,13 +232,13 @@ namespace stokTakip
             this.label8.TabIndex = 5;
             this.label8.Text = "PARÇA STOK ADI";
             // 
-            // textBox5
+            // txt_tedarik
             // 
-            this.textBox5.Location = new System.Drawing.Point(165, 445);
-            this.textBox5.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(244, 22);
-            this.textBox5.TabIndex = 8;
+            this.txt_tedarik.Location = new System.Drawing.Point(165, 445);
+            this.txt_tedarik.Margin = new System.Windows.Forms.Padding(4);
+            this.txt_tedarik.Name = "txt_tedarik";
+            this.txt_tedarik.Size = new System.Drawing.Size(244, 22);
+            this.txt_tedarik.TabIndex = 8;
             // 
             // label9
             // 
@@ -273,7 +282,7 @@ namespace stokTakip
             // simpleButton3
             // 
             this.simpleButton3.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton3.ImageOptions.Image")));
-            this.simpleButton3.Location = new System.Drawing.Point(503, 239);
+            this.simpleButton3.Location = new System.Drawing.Point(503, 240);
             this.simpleButton3.Name = "simpleButton3";
             this.simpleButton3.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
             this.simpleButton3.Size = new System.Drawing.Size(124, 29);
@@ -281,47 +290,105 @@ namespace stokTakip
             this.simpleButton3.Text = "GÜNCELLE";
             this.simpleButton3.Click += new System.EventHandler(this.simpleButton3_Click);
             // 
-            // comboBox5
+            // cb_birim
             // 
-            this.comboBox5.FormattingEnabled = true;
-            this.comboBox5.Location = new System.Drawing.Point(414, 378);
-            this.comboBox5.Name = "comboBox5";
-            this.comboBox5.Size = new System.Drawing.Size(121, 24);
-            this.comboBox5.TabIndex = 14;
+            this.cb_birim.FormattingEnabled = true;
+            this.cb_birim.Items.AddRange(new object[] {
+            "ADET",
+            "METRE",
+            "KİLO",
+            "LİTRE"});
+            this.cb_birim.Location = new System.Drawing.Point(414, 357);
+            this.cb_birim.Name = "cb_birim";
+            this.cb_birim.Size = new System.Drawing.Size(121, 24);
+            this.cb_birim.TabIndex = 14;
+            this.cb_birim.Text = "Seçiniz...";
+            // 
+            // xtraTabPage2
+            // 
+            this.xtraTabPage2.Name = "xtraTabPage2";
+            this.xtraTabPage2.Size = new System.Drawing.Size(1246, 671);
+            // 
+            // xtraTabPage1
+            // 
+            this.xtraTabPage1.Name = "xtraTabPage1";
+            this.xtraTabPage1.Size = new System.Drawing.Size(1246, 671);
+            // 
+            // gridControl1
+            // 
+            this.gridControl1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.gridControl1.Location = new System.Drawing.Point(705, 0);
+            this.gridControl1.MainView = this.gridView1;
+            this.gridControl1.Name = "gridControl1";
+            this.gridControl1.Size = new System.Drawing.Size(495, 701);
+            this.gridControl1.TabIndex = 15;
+            this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView1});
+            this.gridControl1.DoubleClick += new System.EventHandler(this.gridControl1_DoubleClick);
+            // 
+            // gridView1
+            // 
+            this.gridView1.GridControl = this.gridControl1;
+            this.gridView1.Name = "gridView1";
+            this.gridView1.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.gridView1_RowCellStyle);
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(163, 546);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(120, 22);
+            this.textBox1.TabIndex = 16;
+            this.textBox1.Visible = false;
+            // 
+            // simpleButton1
+            // 
+            this.simpleButton1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.ImageOptions.Image")));
+            this.simpleButton1.Location = new System.Drawing.Point(503, 289);
+            this.simpleButton1.Name = "simpleButton1";
+            this.simpleButton1.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
+            this.simpleButton1.Size = new System.Drawing.Size(124, 29);
+            this.simpleButton1.TabIndex = 17;
+            this.simpleButton1.Text = "SİL";
+            this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click_1);
             // 
             // stokKaydi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1067, 554);
-            this.Controls.Add(this.comboBox5);
+            this.ClientSize = new System.Drawing.Size(1200, 701);
+            this.Controls.Add(this.simpleButton1);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.gridControl1);
+            this.Controls.Add(this.cb_birim);
             this.Controls.Add(this.simpleButton3);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.simpleButton2);
             this.Controls.Add(this.label10);
-            this.Controls.Add(this.textBox5);
+            this.Controls.Add(this.txt_tedarik);
             this.Controls.Add(this.label9);
-            this.Controls.Add(this.textBox4);
+            this.Controls.Add(this.txt_stokAdi);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.comboBox4);
+            this.Controls.Add(this.txt_ihtiyac);
+            this.Controls.Add(this.txt_miktar);
+            this.Controls.Add(this.txt_uzunluk);
+            this.Controls.Add(this.cb_grup);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.comboBox3);
+            this.Controls.Add(this.cb_malzeme);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.comboBox2);
+            this.Controls.Add(this.cb_proses);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.cb_altgrup);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.simpleButton1);
+            this.Controls.Add(this.btn_kaydet);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "stokKaydi";
             this.Text = "STOK KAYIT";
             this.Load += new System.EventHandler(this.stokKaydi_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -329,31 +396,37 @@ namespace stokTakip
 
         #endregion
 
-        private DevExpress.XtraEditors.SimpleButton simpleButton1;
+        private DevExpress.XtraEditors.SimpleButton btn_kaydet;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cb_altgrup;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox cb_proses;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.ComboBox cb_malzeme;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox comboBox4;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.ComboBox cb_grup;
+        private System.Windows.Forms.TextBox txt_uzunluk;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txt_miktar;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox txt_ihtiyac;
+        private System.Windows.Forms.TextBox txt_stokAdi;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox txt_tedarik;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
         private DevExpress.XtraEditors.SimpleButton simpleButton2;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private DevExpress.XtraEditors.SimpleButton simpleButton3;
-        private System.Windows.Forms.ComboBox comboBox5;
+        private System.Windows.Forms.ComboBox cb_birim;
+        private DevExpress.XtraTab.XtraTabPage xtraTabPage2;
+        private DevExpress.XtraTab.XtraTabPage xtraTabPage1;
+        private DevExpress.XtraGrid.GridControl gridControl1;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private System.Windows.Forms.TextBox textBox1;
+        private DevExpress.XtraEditors.SimpleButton simpleButton1;
     }
 }
 
