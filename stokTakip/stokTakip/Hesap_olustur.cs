@@ -25,7 +25,7 @@ namespace stokTakip
                 //VERİ TABANINA KAYDEDER
                 if (txt_adsoyad.Text != "" && txt_kullanıcıadı.Text != "" && txt_sıfre.Text !="" && txt_sıfretekrar.Text !="" && cmb_birim.Text !=""&& txt_sıfretekrar.Text==txt_sıfre.Text)
                 {
-                    SqlCommand kaydet = new SqlCommand("insert into Kullanıcılar(adSoyad,kullanıcıAdı,sifre,birim) values (@adSoyad,@sifre,@kullanıcıAdı,@birim)", baglantim.baglanti());
+                    SqlCommand kaydet = new SqlCommand("insert into Kullanıcılar(adSoyad,kullanıcıAdı,sifre,birim) values (@adSoyad,@kullanıcıAdı,@sifre,@birim)", baglantim.baglanti());
                     kaydet.Parameters.Add("@adSoyad", SqlDbType.NVarChar, 50).Value = txt_adsoyad.Text;
                     kaydet.Parameters.Add("@kullanıcıAdı", SqlDbType.NVarChar, 50).Value = txt_kullanıcıadı.Text;
                     kaydet.Parameters.Add("@sifre", SqlDbType.NVarChar,20).Value = txt_sıfre.Text;

@@ -39,7 +39,10 @@ namespace stokTakip
 
                     MessageBox.Show(txt_kullanıcıadı.Text);
 
-
+                    //kullanıcı adını ekle_çıkar formuna yazdırmak için;
+                    EKLE_CIKART.kullanıcıadi = txt_kullanıcıadı.Text;
+                    //ekranlara kullanıcı adını yazar mal kabul
+                    ekran_depo.kullanıcıadi = txt_kullanıcıadı.Text;
 
 
                     string gelen, gelen2;
@@ -55,9 +58,9 @@ namespace stokTakip
                         frm1.Show();
 
                     }
-                    else if (gelen == "MAL KABUL")
+                    else if (gelen == "DEPO")
                     {
-                        ekran_malkabul frm2 = new ekran_malkabul();
+                        ekran_depo frm2 = new ekran_depo();
                         yetki = gelen;
                         kullaniciAdi = gelen2;
                         frm2.Show();
@@ -93,6 +96,14 @@ namespace stokTakip
         {
             
 
+        }
+        //enter tuşu ile giriş yapar formun keypriew ini true yapmalıyız önce
+        private void Giris_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode==Keys.Enter)
+            {
+                simpleButton1.PerformClick();
+            }
         }
 
         private void simpleButton4_Click(object sender, EventArgs e)

@@ -38,6 +38,7 @@ namespace stokTakip
         {
             Giris frms = new Giris();
             label1.Text = t.ToString();
+            
         }
 
         private void barButtonItem2_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)

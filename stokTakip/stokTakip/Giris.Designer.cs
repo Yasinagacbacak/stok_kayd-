@@ -73,6 +73,7 @@
             // 
             this.txt_kullanıcıadı.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.txt_kullanıcıadı.Location = new System.Drawing.Point(185, 150);
+            this.txt_kullanıcıadı.MaxLength = 20;
             this.txt_kullanıcıadı.Name = "txt_kullanıcıadı";
             this.txt_kullanıcıadı.Size = new System.Drawing.Size(182, 27);
             this.txt_kullanıcıadı.TabIndex = 13;
@@ -81,6 +82,7 @@
             // 
             this.txt_sifre.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.txt_sifre.Location = new System.Drawing.Point(185, 205);
+            this.txt_sifre.MaxLength = 10;
             this.txt_sifre.Name = "txt_sifre";
             this.txt_sifre.Size = new System.Drawing.Size(182, 27);
             this.txt_sifre.TabIndex = 14;
@@ -121,9 +123,11 @@
             this.Controls.Add(this.txt_kullanıcıadı);
             this.Controls.Add(this.txt_sifre);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.KeyPreview = true;
             this.MaximizeBox = false;
             this.Name = "Giris";
             this.Text = "Giris";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Giris_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 

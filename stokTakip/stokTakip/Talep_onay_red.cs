@@ -57,6 +57,12 @@ namespace stokTakip
             
         }
 
-                        
+        private void Talep_onay_red_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btn_gonder.PerformClick();
+            }
+        }
     }
 }

@@ -38,6 +38,7 @@
             // 
             // cmb_durum
             // 
+            this.cmb_durum.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmb_durum.FormattingEnabled = true;
             this.cmb_durum.Items.AddRange(new object[] {
             "TALEPTE",
@@ -98,7 +99,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.SkyBlue;
+            this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(439, 489);
             this.Controls.Add(this.btn_gonder);
             this.Controls.Add(this.txt_ID);
@@ -108,10 +109,12 @@
             this.Controls.Add(this.cmb_durum);
             this.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.KeyPreview = true;
             this.MinimizeBox = false;
             this.Name = "Talep_onay_red";
             this.Text = "Talep_onay_red";
             this.Load += new System.EventHandler(this.Talep_onay_red_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Talep_onay_red_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 

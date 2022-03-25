@@ -44,6 +44,32 @@ namespace stokTakip
         {
             listele_talep();
         }
+
+        private void gridView1_RowStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowStyleEventArgs e)
+        {
+            if (e.RowHandle >= 0)
+            {
+                string durum = gridView1.GetRowCellDisplayText(e.RowHandle, gridView1.Columns["durumu"]);
+               
+                //if (durum == "BEKLEMEDE")
+                //{
+                //    e.Appearance.BackColor = Color.Yellow;
+                //    // e.Appearance.BackColor2 = Color.Yellow;
+                //}
+                if (durum == "RED")
+                {
+                    e.Appearance.BackColor = Color.OrangeRed;
+                    //e.Appearance.BackColor2 = Color.Yellow;
+                }
+                else if (durum == "KABUL")
+                {
+                    e.Appearance.BackColor = Color.LightGreen;
+                    //e.Appearance.BackColor2 = Color.Yellow;
+                }
+
+
+            }
+        }
     }
 
 

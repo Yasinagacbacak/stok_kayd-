@@ -45,13 +45,13 @@ namespace stokTakip
                 xtraTabbedMdiManager1.SelectedPage = xtraTabbedMdiManager1.Pages[frm2];
             }
         }
-        Form1 frm3;
+        ayarlar frm3;
         private void barButtonitem5_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
 
             if (frm3 == null || frm3.IsDisposed)
             {
-                frm3 = new Form1();
+                frm3 = new ayarlar();
                 frm3.MdiParent = this;
                 frm3.Show();
             }
@@ -93,6 +93,34 @@ namespace stokTakip
                 {
                     xtraTabbedMdiManager1.SelectedPage = xtraTabbedMdiManager1.Pages[frm5];
                 }
+            }
+        }
+        urunCikisi frm6;
+        private void barButtonItem7_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (frm6 == null || frm6.IsDisposed)
+            {
+                frm6 = new urunCikisi();
+                frm6.MdiParent = this;
+                frm6.Show();
+            }
+            else
+            {
+                xtraTabbedMdiManager1.SelectedPage = xtraTabbedMdiManager1.Pages[frm6];
+            }
+        }
+        Tedarikçiler frm7;
+        private void barButtonItem8_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (frm7 == null || frm7.IsDisposed)
+            {
+                frm7 = new Tedarikçiler();
+                frm7.MdiParent = this;
+                frm7.Show();
+            }
+            else
+            {
+                xtraTabbedMdiManager1.SelectedPage = xtraTabbedMdiManager1.Pages[frm7];
             }
         }
     }

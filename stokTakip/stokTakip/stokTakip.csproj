@@ -80,11 +80,11 @@
     <Compile Include="ekran.Designer.cs">
       <DependentUpon>ekran.cs</DependentUpon>
     </Compile>
-    <Compile Include="ekran_malkabul.cs">
+    <Compile Include="ekran_depo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ekran_malkabul.Designer.cs">
-      <DependentUpon>ekran_malkabul.cs</DependentUpon>
+    <Compile Include="ekran_depo.Designer.cs">
+      <DependentUpon>ekran_depo.cs</DependentUpon>
     </Compile>
     <Compile Include="ekran_tasarım.cs">
       <SubType>Form</SubType>
@@ -92,11 +92,11 @@
     <Compile Include="ekran_tasarım.Designer.cs">
       <DependentUpon>ekran_tasarım.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form1.cs">
+    <Compile Include="ayarlar.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="ayarlar.Designer.cs">
+      <DependentUpon>ayarlar.cs</DependentUpon>
     </Compile>
     <Compile Include="GeriBildirim.cs">
       <SubType>Form</SubType>
@@ -136,6 +136,18 @@
     <Compile Include="Talep_onay_red.Designer.cs">
       <DependentUpon>Talep_onay_red.cs</DependentUpon>
     </Compile>
+    <Compile Include="Tedarikçiler.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tedarikçiler.Designer.cs">
+      <DependentUpon>Tedarikçiler.cs</DependentUpon>
+    </Compile>
+    <Compile Include="urunCikisi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="urunCikisi.Designer.cs">
+      <DependentUpon>urunCikisi.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControl2.xaml.cs">
       <DependentUpon>UserControl2.xaml</DependentUpon>
     </Compile>
@@ -148,14 +160,14 @@
     <EmbeddedResource Include="ekran.resx">
       <DependentUpon>ekran.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ekran_malkabul.resx">
-      <DependentUpon>ekran_malkabul.cs</DependentUpon>
+    <EmbeddedResource Include="ekran_depo.resx">
+      <DependentUpon>ekran_depo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ekran_tasarım.resx">
       <DependentUpon>ekran_tasarım.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="ayarlar.resx">
+      <DependentUpon>ayarlar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GeriBildirim.resx">
       <DependentUpon>GeriBildirim.cs</DependentUpon>
@@ -185,6 +197,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Talep_onay_red.resx">
       <DependentUpon>Talep_onay_red.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tedarikçiler.resx">
+      <DependentUpon>Tedarikçiler.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="urunCikisi.resx">
+      <DependentUpon>urunCikisi.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
