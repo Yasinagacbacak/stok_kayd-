@@ -35,6 +35,7 @@ namespace stokTakip
             gridView1.Columns["ihtiyac"].Caption = "İHTİYAÇ";
             gridView1.Columns["talepEden"].Caption = "TALEP EDEN";
             gridView1.Columns["durumu"].Caption = "DURUMU";
+            gridView1.Columns["marka"].Caption = "MARKA";
 
             gridView1.OptionsBehavior.Editable = false;
             gridView1.OptionsView.ShowAutoFilterRow = true;
@@ -43,6 +44,32 @@ namespace stokTakip
         private void gridControl1_Load(object sender, EventArgs e)
         {
             listele_talep();
+        }
+
+        private void gridView1_RowStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowStyleEventArgs e)
+        {
+            if (e.RowHandle >= 0)
+            {
+                string durum = gridView1.GetRowCellDisplayText(e.RowHandle, gridView1.Columns["durumu"]);
+               
+                //if (durum == "BEKLEMEDE")
+                //{
+                //    e.Appearance.BackColor = Color.Yellow;
+                //    // e.Appearance.BackColor2 = Color.Yellow;
+                //}
+                if (durum == "RED")
+                {
+                    e.Appearance.BackColor = Color.OrangeRed;
+                    //e.Appearance.BackColor2 = Color.Yellow;
+                }
+                else if (durum == "KABUL")
+                {
+                    e.Appearance.BackColor = Color.LightGreen;
+                    //e.Appearance.BackColor2 = Color.Yellow;
+                }
+
+
+            }
         }
     }
 

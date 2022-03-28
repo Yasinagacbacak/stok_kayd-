@@ -46,6 +46,8 @@ namespace stokTakip
             gridView1.Columns["ihtiyac"].Caption = "İHTİYAÇ";
             gridView1.Columns["talepEden"].Caption = "TALEP EDEN";
             gridView1.Columns["durumu"].Caption = "DURUMU";
+         
+            gridView1.Columns["marka"].Caption = "MARKA";
 
             gridView1.OptionsBehavior.Editable = false;
             gridView1.OptionsView.ShowAutoFilterRow = true;
@@ -100,19 +102,54 @@ namespace stokTakip
             listele_talep();
         }
 
-        //void KayıtSil(int ID)
-        //{
-        //    string sql = "DELETE FROM StokTalebi WHERE ID=@ID";
-        //    komut = new SqlCommand(sql, con);
-        //    komut.Parameters.AddWithValue("@ID", ID);
-        //    con.Open();
-        //    komut.ExecuteNonQuery();
-        //    con.Close();
-        //}
+
 
         private void gridControl1_Click(object sender, EventArgs e)
         {
             txt_id.Text = gridView1.GetFocusedRowCellValue("ID").ToString();
+        } 
+
+        // gridview i boyar  rowstyleye gridiview in yıldırım işaretinde bulabilirsin
+
+        private void gridView1_RowStyle(object sender, RowStyleEventArgs e)
+        {
+            // GridView view = new GridView();
+            if (gridView1.Columns.Count > 0)
+            {
+                if (e.RowHandle >= 0)
+                {
+                    //string kategori = view.GetRowCellDisplayText(e.RowHandle, view.Columns[5]);
+                    string durum = gridView1.GetRowCellDisplayText(e.RowHandle, gridView1.Columns["durumu"]);
+                    if (durum == "BEKLEMEDE")
+                    {
+                        e.Appearance.BackColor = Color.Yellow;
+                       // e.Appearance.BackColor2 = Color.Yellow;
+                    }
+                    else if (durum == "RED")
+                    {
+                        e.Appearance.BackColor = Color.OrangeRed;
+                        //e.Appearance.BackColor2 = Color.Yellow;
+                    }
+                    else if (durum == "KABUL")
+                    {
+                        e.Appearance.BackColor = Color.LightGreen;
+                        //e.Appearance.BackColor2 = Color.Yellow;
+                    }
+                }
+            }
+        }
+
+        private void StokTalepleri_Load(object sender, EventArgs e)
+        {
+            listele_talep();
+        }
+
+        private void StokTalepleri_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F5)
+            {
+                simpleButton1.PerformClick();
+            }
         }
     }
 }

@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using DevExpress.XtraGrid.Views.Grid;
+using System.IO;
 
 
 namespace stokTakip
@@ -19,7 +20,7 @@ namespace stokTakip
         {
             InitializeComponent();
         }
-       
+
 
 
         sqlBaglantisi baglantım = new sqlBaglantisi();
@@ -34,7 +35,7 @@ namespace stokTakip
             }
 
 
-
+            //combobaxtaki ürünleri getirmek içi gerekli
             SqlCommand komut1 = new SqlCommand("select * from Grup", baglantım.baglanti());
             SqlDataReader dr1;
             dr1 = komut1.ExecuteReader();
@@ -56,7 +57,15 @@ namespace stokTakip
             {
                 cb_malzeme.Items.Add(dr3[1].ToString());
             }
+            SqlCommand komut4 = new SqlCommand("select * from tedarikciBilgileri", baglantım.baglanti());
+            SqlDataReader dr4;
+            dr4 = komut4.ExecuteReader();
+            while (dr4.Read())
+            {
+                cmb_tedarikci.Items.Add(dr4[1].ToString());
+            }
             listele_stok();
+
         }
         //Gridcontrolde listeleme
         public void listele_stok()
@@ -74,6 +83,7 @@ namespace stokTakip
             gridView1.Columns["grupAdi"].Caption = "GRUP ADI";
             gridView1.Columns["altGrupAdi"].Caption = "ALT GRUP ADI";
             gridView1.Columns["parcaStokAdi"].Caption = "PARÇA STOK ADI";
+            gridView1.Columns["marka"].Caption = "MARKA";
             gridView1.Columns["malzemeCinsi"].Caption = "MALZEME CİNSİ";
             gridView1.Columns["uzunluk"].Caption = "UZUNLUK";
             gridView1.Columns["miktar"].Caption = "MİKTAR";
@@ -81,6 +91,9 @@ namespace stokTakip
             gridView1.Columns["tedarikci"].Caption = "TEDARİKÇİ";
             gridView1.Columns["tarih"].Caption = "TARİH";
             gridView1.Columns["birim"].Caption = "BİRİM";
+            gridView1.Columns["seriNo"].Caption = "SERİ NO";
+     
+
 
 
             gridView1.OptionsBehavior.Editable = false;
@@ -96,11 +109,13 @@ namespace stokTakip
             txt_miktar.Clear();
             txt_ihtiyac.Clear();
             txt_stokAdi.Clear();
-            txt_tedarik.Clear();
+            cmb_tedarikci.Text = "Seçiniz..;";
             cb_altgrup.Text = "Seçiniz..";
             cb_proses.Text = "Seçiniz..";
             cb_malzeme.Text = "Seçiniz..";
             cb_grup.Text = "Seçiniz..";
+            txt_marka.Clear();
+            txt_seriNo.Clear();
         }
 
 
@@ -108,16 +123,16 @@ namespace stokTakip
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
-            if (cb_proses.Text == "Seçiniz..." || cb_grup.Text == "Seçiniz..." || cb_altgrup.Text == "Seçiniz..." || cb_malzeme.Text == "Seçiniz...." || txt_uzunluk.Text == "" || txt_miktar.Text == "" || txt_ihtiyac.Text == "" || txt_stokAdi.Text == "" || txt_tedarik.Text == "")
+            if (cb_proses.Text == "Seçiniz..." || cb_grup.Text == "Seçiniz..." || cb_altgrup.Text == "Seçiniz..." || cb_malzeme.Text == "Seçiniz...." || txt_uzunluk.Text == "" || txt_miktar.Text == "" || txt_ihtiyac.Text == "" || txt_stokAdi.Text == "" || cmb_tedarikci.Text == ""  || txt_marka.Text=="")
             {
                 MessageBox.Show("EKSİK BİLGİ GİRDİNİZ !");
             }
             else
-            {//GİRİLEN BİLGİLERİ VERİ TABANINA KAYDEDER
+            {
 
                 SqlCommand komut = new SqlCommand("insert into tbl_stokKarti " +
-                    "(prosesGrubu,grupAdi,altGrupAdi,parcaStokAdi,malzemeCinsi,uzunluk,miktar,ihtiyac,tedarikci,tarih) values" +
-                    "('" + cb_proses.Text + "','" + cb_grup.Text + "','" + cb_altgrup.Text + "','" + txt_stokAdi.Text + "','" + cb_malzeme.Text + "','" + txt_uzunluk.Text + "','" + txt_miktar.Text + "','" + txt_ihtiyac.Text + "','" + txt_tedarik.Text + "','" + dateTimePicker1.Text + "')", baglantım.baglanti());
+                    "(prosesGrubu,grupAdi,altGrupAdi,parcaStokAdi,malzemeCinsi,uzunluk,miktar,ihtiyac,tedarikci,tarih,seriNo,marka) values" +
+                    "('" + cb_proses.Text + "','" + cb_grup.Text + "','" + cb_altgrup.Text + "','" + txt_stokAdi.Text + "','" + cb_malzeme.Text + "','" + txt_uzunluk.Text + "','" + txt_miktar.Text + "','" + txt_ihtiyac.Text + "','" + cmb_tedarikci.Text + "','" + dateTimePicker1.Text + "','" +txt_seriNo.Text + "','"+txt_marka +"')", baglantım.baglanti());
                 komut.ExecuteNonQuery();
                 MessageBox.Show("KAYIT OLUŞTURULDU");
 
@@ -132,6 +147,7 @@ namespace stokTakip
             }
         }
 
+
         private void textBox3_KeyPress(object sender, KeyPressEventArgs e)
         {
             {
@@ -143,7 +159,7 @@ namespace stokTakip
         {
             e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
         }
-
+        //kaydet butonu
         private void btn_kaydet_Click(object sender, EventArgs e)
         {
             if (cb_proses.Text == "Seçiniz..." || cb_proses.Text == "")
@@ -200,21 +216,23 @@ namespace stokTakip
                 label7.ForeColor = Color.Black;
 
 
-            if (txt_tedarik.Text == "")
+            if (cmb_tedarikci.Text == "Seçiniz..")
                 label9.ForeColor = Color.Red;
 
             else
                 label9.ForeColor = Color.Black;
 
+
+
             if (cb_proses.Text != "Seçiniz..." && cb_grup.Text != "Seçiniz..." &&
                 cb_altgrup.Text != "Seçiniz..." && cb_malzeme.Text != "Seçiniz..." && cb_malzeme.Text != "" &&
                 txt_stokAdi.Text != "" && txt_uzunluk.Text != "" && txt_miktar.Text != "" && cb_birim.Text != "" &&
-                   txt_ihtiyac.Text != "" && txt_tedarik.Text != "")
+                   txt_ihtiyac.Text != "" && cmb_tedarikci.Text != ""  &&txt_marka.Text!="")
             {
                 //VERİ TABANINA KAYDEDER
                 SqlCommand kaydet = new SqlCommand("insert into tbl_stokKarti(prosesGrubu,grupAdi,altGrupAdi,parcaStokAdi," +
-                    "malzemeCinsi,uzunluk,miktar,ihtiyac,tedarikci,tarih,birim) values (@prosesGrubu,@grupAdi,@altGrupAdi,@parcaStokAdi," +
-                    "@malzemeCinsi,@uzunluk,@miktar,@ihtiyac,@tedarikci,@tarih,@birim)", baglantım.baglanti());
+                    "malzemeCinsi,uzunluk,miktar,ihtiyac,tedarikci,tarih,birim,seriNo,marka) values (@prosesGrubu,@grupAdi,@altGrupAdi,@parcaStokAdi," +
+                    "@malzemeCinsi,@uzunluk,@miktar,@ihtiyac,@tedarikci,@tarih,@birim,@seriNo,@marka)", baglantım.baglanti());
                 kaydet.Parameters.Add("@prosesGrubu", SqlDbType.NVarChar, 100).Value = cb_proses.Text;
                 kaydet.Parameters.Add("@grupAdi", SqlDbType.NVarChar, 100).Value = cb_grup.Text;
                 kaydet.Parameters.Add("@altGrupAdi", SqlDbType.NVarChar, 100).Value = cb_altgrup.Text;
@@ -223,9 +241,11 @@ namespace stokTakip
                 kaydet.Parameters.Add("@uzunluk", SqlDbType.NVarChar, 50).Value = txt_uzunluk.Text;
                 kaydet.Parameters.Add("@miktar", SqlDbType.NVarChar, 50).Value = txt_miktar.Text;
                 kaydet.Parameters.Add("@ihtiyac", SqlDbType.NVarChar, 50).Value = txt_ihtiyac.Text;
-                kaydet.Parameters.Add("@tedarikci", SqlDbType.NVarChar, 100).Value = txt_tedarik.Text;
+                kaydet.Parameters.Add("@tedarikci", SqlDbType.NVarChar, 100).Value = cmb_tedarikci.Text;
                 kaydet.Parameters.Add("@tarih", SqlDbType.Date).Value = dateTimePicker1.Value;
                 kaydet.Parameters.Add("birim", SqlDbType.NVarChar, 10).Value = cb_birim.Text;
+                kaydet.Parameters.Add("@seriNo", SqlDbType.Int).Value = txt_seriNo.Text;
+                kaydet.Parameters.Add("marka", SqlDbType.NVarChar, 50).Value = txt_marka.Text;
                 try
                 {
                     kaydet.ExecuteNonQuery();
@@ -233,7 +253,7 @@ namespace stokTakip
                 }
                 catch (Exception)
                 {
-                    MessageBox.Show("sdsad");
+                    MessageBox.Show("HATA");
                     throw;
                 }
 
@@ -244,6 +264,18 @@ namespace stokTakip
                 MessageBox.Show("kırmızı alanları gözden geçir");
             }
             listele_stok();
+            txt_uzunluk.Clear();
+            txt_miktar.Clear();
+            txt_ihtiyac.Clear();
+            txt_stokAdi.Clear();
+            txt_marka.Clear();
+            txt_seriNo.Clear();
+            cmb_tedarikci.Text = "Seçiniz..";
+            cb_altgrup.Text = "Seçiniz..";
+            cb_proses.Text = "Seçiniz..";
+            cb_malzeme.Text = "Seçiniz..";
+            cb_grup.Text = "Seçiniz..";
+
         }
         //GRİD CONTROL ÜZERİNE CİF TIKLIYARAK TEXTBOXLARA YAZDIRMAK
         private void gridControl1_DoubleClick(object sender, EventArgs e)
@@ -254,24 +286,29 @@ namespace stokTakip
             cb_altgrup.Text = gridView1.GetFocusedRowCellValue("altGrupAdi").ToString();
             cb_malzeme.Text = gridView1.GetFocusedRowCellValue("malzemeCinsi").ToString();
             txt_stokAdi.Text = gridView1.GetFocusedRowCellValue("parcaStokAdi").ToString();
+            txt_marka.Text = gridView1.GetFocusedRowCellValue("marka").ToString();
             txt_uzunluk.Text = gridView1.GetFocusedRowCellValue("uzunluk").ToString();
             txt_miktar.Text = gridView1.GetFocusedRowCellValue("miktar").ToString();
             txt_ihtiyac.Text = gridView1.GetFocusedRowCellValue("ihtiyac").ToString();
-            txt_tedarik.Text = gridView1.GetFocusedRowCellValue("tedarikci").ToString();
+            cmb_tedarikci.Text = gridView1.GetFocusedRowCellValue("tedarikci").ToString();
             cb_birim.Text = gridView1.GetFocusedRowCellValue("birim").ToString();
+           
+            txt_seriNo.Text = gridView1.GetFocusedRowCellValue("seriNo").ToString();
+
+
             textBox1.Text = gridView1.GetFocusedRowCellValue("id").ToString();
         }
-
+        //güncelle
         private void simpleButton3_Click(object sender, EventArgs e)
         {
             if (cb_proses.Text != "Seçiniz..." && cb_grup.Text != "Seçiniz..." &&
                 cb_altgrup.Text != "Seçiniz..." && cb_malzeme.Text != "Seçiniz..." && cb_malzeme.Text != "" &&
                 txt_stokAdi.Text != "" && txt_uzunluk.Text != "" && txt_miktar.Text != "" && cb_birim.Text != "" &&
-                   txt_ihtiyac.Text != "" && txt_tedarik.Text != "")
+                   txt_ihtiyac.Text != "" && cmb_tedarikci.Text != ""&& txt_marka.Text!="")
             {
 
 
-                SqlCommand guncellekomutu = new SqlCommand("update tbl_stokKarti set prosesGrubu=@prosesGrubu, grupAdi=@grupAdi, altGrupAdi=@altGrupAdi, parcaStokAdi=@parcaStokAdi, malzemeCinsi=@malzemeCinsi, uzunluk=@uzunluk, miktar=@miktar, ihtiyac=@ihtiyac, tedarikci=@tedarikci, tarih=@tarih, birim=@birim where id=@id", baglantım.baglanti());
+                SqlCommand guncellekomutu = new SqlCommand("update tbl_stokKarti set prosesGrubu=@prosesGrubu, grupAdi=@grupAdi, altGrupAdi=@altGrupAdi, parcaStokAdi=@parcaStokAdi, malzemeCinsi=@malzemeCinsi, uzunluk=@uzunluk, miktar=@miktar, ihtiyac=@ihtiyac, tedarikci=@tedarikci, tarih=@tarih, birim=@birim ,seriNo=@seriNo, marka=@marka where id=@id", baglantım.baglanti());
 
                 guncellekomutu.Parameters.AddWithValue("@id", Convert.ToInt32(textBox1.Text));
                 guncellekomutu.Parameters.Add("@prosesGrubu", SqlDbType.NVarChar, 100).Value = cb_proses.Text;
@@ -282,9 +319,11 @@ namespace stokTakip
                 guncellekomutu.Parameters.Add("@uzunluk", SqlDbType.NVarChar, 50).Value = txt_uzunluk.Text;
                 guncellekomutu.Parameters.Add("@miktar", SqlDbType.Int).Value = txt_miktar.Text;
                 guncellekomutu.Parameters.Add("@ihtiyac", SqlDbType.Int).Value = txt_ihtiyac.Text;
-                guncellekomutu.Parameters.Add("@tedarikci", SqlDbType.NVarChar, 100).Value = txt_tedarik.Text;
+                guncellekomutu.Parameters.Add("@tedarikci", SqlDbType.NVarChar, 100).Value = cmb_tedarikci.Text;
                 guncellekomutu.Parameters.Add("@tarih", SqlDbType.Date).Value = dateTimePicker1.Text;
                 guncellekomutu.Parameters.Add("@birim", SqlDbType.NVarChar, 10).Value = cb_birim.Text;
+                guncellekomutu.Parameters.Add("@seriNo", Convert.ToInt32(txt_seriNo.Text));
+                guncellekomutu.Parameters.Add("@marka", SqlDbType.NVarChar, 50).Value = txt_marka.Text;
                 guncellekomutu.ExecuteNonQuery();
 
                 listele_stok();
@@ -323,11 +362,13 @@ namespace stokTakip
                     txt_miktar.Clear();
                     txt_ihtiyac.Clear();
                     txt_stokAdi.Clear();
-                    txt_tedarik.Clear();
+                    cmb_tedarikci.Text = "Seçiniz..";
                     cb_altgrup.Text = "Seçiniz..";
                     cb_proses.Text = "Seçiniz..";
                     cb_malzeme.Text = "Seçiniz..";
                     cb_grup.Text = "Seçiniz..";
+                    txt_marka.Clear();
+                    txt_seriNo.Clear();
                     break;
                 }
             }
@@ -344,12 +385,77 @@ namespace stokTakip
 
                 e.Appearance.BackColor = Color.LightGreen;
             }
+         
+
             else
             {
                 e.Appearance.BackColor = Color.Red;
             }
 
 
+        }
+        // pdf excel formatına dönüştürür
+        private void simpleButton4_Click(object sender, EventArgs e)
+        {
+            using (SaveFileDialog saveDialog = new SaveFileDialog())
+            {
+                saveDialog.Filter = "Excel (2003)(.xls)|.xls|Excel (2010) (.xlsx)|.xlsx |RichText File (.rtf)|.rtf |Pdf File (.pdf)|.pdf |Html File (.html)|*.html";
+                if (saveDialog.ShowDialog() != DialogResult.Cancel)
+                {
+                    string exportFilePath = saveDialog.FileName;
+                    string fileExtenstion = new FileInfo(exportFilePath).Extension;
+
+                    switch (fileExtenstion)
+                    {
+                        case ".xls":
+                            gridControl1.ExportToXls(exportFilePath);
+                            break;
+                        case ".xlsx":
+                            gridControl1.ExportToXlsx(exportFilePath);
+                            break;
+                        case ".rtf":
+                            gridControl1.ExportToRtf(exportFilePath);
+                            break;
+                        case ".pdf":
+                            gridControl1.ExportToPdf(exportFilePath);
+                            break;
+                        case ".html":
+                            gridControl1.ExportToHtml(exportFilePath);
+                            break;
+                        case ".mht":
+                            gridControl1.ExportToMht(exportFilePath);
+                            break;
+                        default:
+                            break;
+                    }
+
+                    if (File.Exists(exportFilePath))
+                    {
+                        try
+                        {
+                            //Try to open the file and let windows decide how to open it.
+                            System.Diagnostics.Process.Start(exportFilePath);
+                        }
+                        catch
+                        {
+                            String msg = "Dosya açılamadı." + Environment.NewLine + Environment.NewLine + "Path: " + exportFilePath;
+                            MessageBox.Show(msg, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    else
+                    {
+                        String msg = "Dosya kaydedilemedi." + Environment.NewLine + Environment.NewLine + "Path: " + exportFilePath;
+                        MessageBox.Show(msg, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+        }
+
+        private void txt_seriNo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            {
+                e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
+            }
         }
     }
 }
