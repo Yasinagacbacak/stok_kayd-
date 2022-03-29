@@ -22,6 +22,7 @@ namespace stokTakip
         }
         sqlBaglantisi baglantım = new sqlBaglantisi();
 
+
         string eskisiIstenicek = "";
         string eskisiIsteme = "";
 
@@ -58,10 +59,11 @@ namespace stokTakip
 
         }
 
-
+        
 
         private void btn_kaydet_Click(object sender, EventArgs e)
         {
+
             if (txt_projeNo.Text != "" && txt_stokAdi.Text != "" && txt_miktar.Text != "" && cmb_birim.Text != "Seçiniz..." && txt_teslimAlan.Text != "" && cmb_tur.Text != "Seçiniz...")
             {
                 //VERİ TABANINA KAYDEDER
@@ -113,27 +115,39 @@ namespace stokTakip
                 //bu değişken stoktan düşmek için gerekli
                 int stokcıkısı;
                 stokcıkısı = int.Parse(txt_miktar.Text) - int.Parse(txt_cikis.Text);
+                int miktar;
+                miktar = int.Parse(txt_miktar.Text);
+                int cikis;
+                cikis = int.Parse(txt_cikis.Text);
+       
 
-                try
+                if (miktar >= cikis)
+                // sql stok kartı tablosundan ürün cıkışı yapmak miktar azaltmak için;
                 {
-                    kaydet.ExecuteNonQuery();
-                    MessageBox.Show("ÜRÜN ÇIKIŞI BAŞARIYLA GERÇEKLEŞTİ MEVCUT STOK="+stokcıkısı+"" );
+                    SqlCommand guncellekomutu = new SqlCommand("update tbl_stokKarti set miktar=@miktar where id=@id", baglantım.baglanti());
+
+                    guncellekomutu.Parameters.AddWithValue("@id", Convert.ToInt32(textBox2.Text));
+
+                    guncellekomutu.Parameters.Add("@miktar", SqlDbType.Int).Value = stokcıkısı;
+
+                    guncellekomutu.ExecuteNonQuery();
+                    try
+                    {
+                        kaydet.ExecuteNonQuery();
+                        MessageBox.Show("ÜRÜN ÇIKIŞI BAŞARIYLA GERÇEKLEŞTİ MEVCUT STOK=" + stokcıkısı + "");
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show("hata");
+                        throw;
+                    }
                 }
-                catch (Exception)
+
+
+                else
                 {
-                    MessageBox.Show("hata");
-                    throw;
+                    MessageBox.Show("stokta yeterli sayıda ürün mevcut değildir");
                 }
-
-               
-
-                SqlCommand guncellekomutu = new SqlCommand("update tbl_stokKarti set miktar=@miktar where id=@id", baglantım.baglanti());
-
-                guncellekomutu.Parameters.AddWithValue("@id", Convert.ToInt32(textBox2.Text));
-
-                guncellekomutu.Parameters.Add("@miktar", SqlDbType.Int).Value = stokcıkısı;
-
-                guncellekomutu.ExecuteNonQuery();
 
             }
             else
@@ -141,9 +155,10 @@ namespace stokTakip
                 MessageBox.Show("LÜTFEN BOŞLUKLARI DOLDURUNUZ !");
             }
             listele_urunCikisi();
+            listele_stok();
            
             
-            // sql stok kartı tablosundan ürün cıkışı yapmak miktar azaltmak için;
+     
        
             
 
@@ -179,7 +194,16 @@ namespace stokTakip
         {
             listele_urunCikisi();
             listele_stok();
+
+
+            btn_kaydet.Enabled = false;
+            simpleButton1.Enabled = false;
+            simpleButton3.Enabled = false;
+          
+
+
         }
+    
         //gridviewe çif tık yaparak texboxlara yazdırmak
         private void gridControl1_DoubleClick(object sender, EventArgs e)
         {
@@ -452,11 +476,77 @@ namespace stokTakip
             txt_marka.Text = gridView2.GetFocusedRowCellValue("marka").ToString();
             txt_seriNo.Text = gridView2.GetFocusedRowCellValue("seriNo").ToString();
         }
-
+        
+        // yazı girilmez yapar
         private void txt_seriNo_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
         }
+
+        private void txt_stokAdi_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
+        }
+
+        private void txt_marka_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
+        }
+
+        private void txt_malzemeCinsi_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
+        }
+
+        private void txt_projeNo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
+        }
+
+        private void txt_cikis_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
+        }
+
+        private void txt_marka_TextChanged(object sender, EventArgs e)
+        {
+            txt_marka.Text = txt_marka.Text.ToUpper();
+            txt_marka.SelectionStart = txt_marka.Text.Length;
+        }
+
+        private void txt_teslimAlan_TextChanged(object sender, EventArgs e)
+        {
+            txt_teslimAlan.Text = txt_teslimAlan.Text.ToUpper();
+            txt_teslimAlan.SelectionStart = txt_teslimAlan.Text.Length;
+        }
+
+        // SEÇİLDİĞİNDE BUTONU AKTİF EDER YADA KAPATIR
+
+        private void stokControl_Click(object sender, EventArgs e)
+        {
+            if (stokControl.SelectedTabPage==xtraTabPage1)
+            {
+                btn_kaydet.Enabled = false;
+
+            }
+            else
+                btn_kaydet.Enabled = true;
+
+
+            if (stokControl.SelectedTabPage == xtraTabPage2)
+            {
+                simpleButton3.Enabled = false;
+                simpleButton1.Enabled = false;
+
+            }
+            else
+            {
+                simpleButton3.Enabled = true;
+                simpleButton1.Enabled = true;
+            }
+
+        }
+
 
 
     }

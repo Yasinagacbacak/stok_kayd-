@@ -227,6 +227,7 @@ namespace stokTakip
             this.txt_stokAdi.Name = "txt_stokAdi";
             this.txt_stokAdi.Size = new System.Drawing.Size(244, 22);
             this.txt_stokAdi.TabIndex = 6;
+            this.txt_stokAdi.TextChanged += new System.EventHandler(this.txt_stokAdi_TextChanged);
             // 
             // label8
             // 
@@ -385,6 +386,7 @@ namespace stokTakip
             this.txt_marka.Name = "txt_marka";
             this.txt_marka.Size = new System.Drawing.Size(244, 22);
             this.txt_marka.TabIndex = 54;
+            this.txt_marka.TextChanged += new System.EventHandler(this.txt_marka_TextChanged);
             // 
             // label11
             // 

@@ -457,5 +457,17 @@ namespace stokTakip
                 e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
             }
         }
+        // otomatik büyük harf olarak yazdırma
+        private void txt_marka_TextChanged(object sender, EventArgs e)
+        {
+            txt_marka.Text = txt_marka.Text.ToUpper();
+            txt_marka.SelectionStart = txt_marka.Text.Length;
+        }
+
+        private void txt_stokAdi_TextChanged(object sender, EventArgs e)
+        {
+            txt_stokAdi.Text = txt_stokAdi.Text.ToUpper();
+            txt_stokAdi.SelectionStart = txt_stokAdi.Text.Length;
+        }
     }
 }

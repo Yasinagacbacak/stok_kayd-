@@ -74,11 +74,11 @@
             this.barButtonItem3 = new DevExpress.XtraBars.BarButtonItem();
             this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
             this.xtraScrollableControl1 = new DevExpress.XtraEditors.XtraScrollableControl();
-            this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
-            this.xtraTabPage1 = new DevExpress.XtraTab.XtraTabPage();
+            this.stokControl = new DevExpress.XtraTab.XtraTabControl();
             this.xtraTabPage2 = new DevExpress.XtraTab.XtraTabPage();
             this.gridControl2 = new DevExpress.XtraGrid.GridControl();
             this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.xtraTabPage1 = new DevExpress.XtraTab.XtraTabPage();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.txt_malzemeCinsi = new System.Windows.Forms.TextBox();
@@ -94,12 +94,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.popupMenu1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
-            this.xtraTabControl1.SuspendLayout();
-            this.xtraTabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.stokControl)).BeginInit();
+            this.stokControl.SuspendLayout();
             this.xtraTabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
+            this.xtraTabPage1.SuspendLayout();
             this.SuspendLayout();
             // 
             // cmb_tur
@@ -111,7 +111,7 @@
             "METRE",
             "KİLO",
             "LİTRE"});
-            this.cmb_tur.Location = new System.Drawing.Point(448, 174);
+            this.cmb_tur.Location = new System.Drawing.Point(449, 166);
             this.cmb_tur.Name = "cmb_tur";
             this.cmb_tur.Size = new System.Drawing.Size(121, 24);
             this.cmb_tur.TabIndex = 17;
@@ -119,7 +119,7 @@
             // txt_miktar
             // 
             this.txt_miktar.Enabled = false;
-            this.txt_miktar.Location = new System.Drawing.Point(197, 174);
+            this.txt_miktar.Location = new System.Drawing.Point(198, 166);
             this.txt_miktar.Margin = new System.Windows.Forms.Padding(4);
             this.txt_miktar.Name = "txt_miktar";
             this.txt_miktar.Size = new System.Drawing.Size(244, 22);
@@ -129,12 +129,12 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(73, 177);
+            this.label6.Location = new System.Drawing.Point(74, 166);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(114, 17);
+            this.label6.Size = new System.Drawing.Size(107, 17);
             this.label6.TabIndex = 15;
-            this.label6.Text = "MİKTAR(mevcut)";
+            this.label6.Text = "MEVCUT STOK";
             // 
             // dateTimePicker1
             // 
@@ -160,6 +160,7 @@
             this.txt_teslimAlan.Name = "txt_teslimAlan";
             this.txt_teslimAlan.Size = new System.Drawing.Size(244, 22);
             this.txt_teslimAlan.TabIndex = 23;
+            this.txt_teslimAlan.TextChanged += new System.EventHandler(this.txt_teslimAlan_TextChanged);
             // 
             // label1
             // 
@@ -173,11 +174,13 @@
             // 
             // txt_stokAdi
             // 
+            this.txt_stokAdi.Enabled = false;
             this.txt_stokAdi.Location = new System.Drawing.Point(197, 132);
             this.txt_stokAdi.Margin = new System.Windows.Forms.Padding(4);
             this.txt_stokAdi.Name = "txt_stokAdi";
             this.txt_stokAdi.Size = new System.Drawing.Size(244, 22);
             this.txt_stokAdi.TabIndex = 25;
+            this.txt_stokAdi.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_stokAdi_KeyPress);
             // 
             // label8
             // 
@@ -249,6 +252,7 @@
             this.txt_projeNo.Name = "txt_projeNo";
             this.txt_projeNo.Size = new System.Drawing.Size(244, 22);
             this.txt_projeNo.TabIndex = 30;
+            this.txt_projeNo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_projeNo_KeyPress);
             // 
             // label4
             // 
@@ -348,10 +352,10 @@
             this.rb_istemebos.AutoSize = true;
             this.rb_istemebos.Location = new System.Drawing.Point(40, 121);
             this.rb_istemebos.Name = "rb_istemebos";
-            this.rb_istemebos.Size = new System.Drawing.Size(180, 22);
+            this.rb_istemebos.Size = new System.Drawing.Size(163, 22);
             this.rb_istemebos.TabIndex = 46;
             this.rb_istemebos.TabStop = true;
-            this.rb_istemebos.Text = "boş bırakmak için seç";
+            this.rb_istemebos.Text = "İşlem Yapılmayacak";
             this.rb_istemebos.UseVisualStyleBackColor = true;
             // 
             // rb_eksik
@@ -410,21 +414,22 @@
             // btn_kaydet
             // 
             this.btn_kaydet.ImageOptions.Image = global::stokTakip.Properties.Resources.add_32x32;
-            this.btn_kaydet.Location = new System.Drawing.Point(146, 617);
+            this.btn_kaydet.Location = new System.Drawing.Point(111, 617);
             this.btn_kaydet.Margin = new System.Windows.Forms.Padding(4);
             this.btn_kaydet.Name = "btn_kaydet";
             this.btn_kaydet.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light;
-            this.btn_kaydet.Size = new System.Drawing.Size(127, 59);
+            this.btn_kaydet.Size = new System.Drawing.Size(162, 59);
             this.btn_kaydet.TabIndex = 40;
             this.btn_kaydet.Text = "ÜRÜN ÇIKIŞI";
             this.btn_kaydet.Click += new System.EventHandler(this.btn_kaydet_Click);
             // 
             // gridControl1
             // 
-            this.gridControl1.Location = new System.Drawing.Point(3, 3);
+            this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gridControl1.Location = new System.Drawing.Point(0, 0);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(1094, 755);
+            this.gridControl1.Size = new System.Drawing.Size(1073, 714);
             this.gridControl1.TabIndex = 42;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -563,38 +568,35 @@
             this.xtraScrollableControl1.Size = new System.Drawing.Size(8, 8);
             this.xtraScrollableControl1.TabIndex = 56;
             // 
-            // xtraTabControl1
+            // stokControl
             // 
-            this.xtraTabControl1.Location = new System.Drawing.Point(929, 12);
-            this.xtraTabControl1.Name = "xtraTabControl1";
-            this.xtraTabControl1.SelectedTabPage = this.xtraTabPage1;
-            this.xtraTabControl1.Size = new System.Drawing.Size(1098, 744);
-            this.xtraTabControl1.TabIndex = 57;
-            this.xtraTabControl1.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
+            this.stokControl.Appearance.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.stokControl.Appearance.Options.UseBackColor = true;
+            this.stokControl.Location = new System.Drawing.Point(930, 1);
+            this.stokControl.Name = "stokControl";
+            this.stokControl.SelectedTabPage = this.xtraTabPage2;
+            this.stokControl.Size = new System.Drawing.Size(1075, 744);
+            this.stokControl.TabIndex = 57;
+            this.stokControl.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPage1,
             this.xtraTabPage2});
-            // 
-            // xtraTabPage1
-            // 
-            this.xtraTabPage1.Controls.Add(this.gridControl1);
-            this.xtraTabPage1.Name = "xtraTabPage1";
-            this.xtraTabPage1.Size = new System.Drawing.Size(1096, 714);
-            this.xtraTabPage1.Text = "xtraTabPage1";
+            this.stokControl.Click += new System.EventHandler(this.stokControl_Click);
             // 
             // xtraTabPage2
             // 
             this.xtraTabPage2.Controls.Add(this.gridControl2);
             this.xtraTabPage2.Name = "xtraTabPage2";
-            this.xtraTabPage2.Size = new System.Drawing.Size(1096, 714);
-            this.xtraTabPage2.Text = "xtraTabPage2";
+            this.xtraTabPage2.Size = new System.Drawing.Size(1073, 714);
+            this.xtraTabPage2.Text = "STOK";
             // 
             // gridControl2
             // 
+            this.gridControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gridControl2.Location = new System.Drawing.Point(0, 0);
             this.gridControl2.MainView = this.gridView2;
             this.gridControl2.MenuManager = this.barManager1;
             this.gridControl2.Name = "gridControl2";
-            this.gridControl2.Size = new System.Drawing.Size(1093, 680);
+            this.gridControl2.Size = new System.Drawing.Size(1073, 714);
             this.gridControl2.TabIndex = 0;
             this.gridControl2.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView2});
@@ -605,12 +607,20 @@
             this.gridView2.GridControl = this.gridControl2;
             this.gridView2.Name = "gridView2";
             // 
+            // xtraTabPage1
+            // 
+            this.xtraTabPage1.Controls.Add(this.gridControl1);
+            this.xtraTabPage1.Name = "xtraTabPage1";
+            this.xtraTabPage1.Size = new System.Drawing.Size(1073, 714);
+            this.xtraTabPage1.Text = "ÜRÜN ÇIKIŞ KAYITLARI";
+            // 
             // textBox2
             // 
             this.textBox2.Location = new System.Drawing.Point(780, 656);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(100, 22);
             this.textBox2.TabIndex = 58;
+            this.textBox2.Visible = false;
             // 
             // label7
             // 
@@ -624,19 +634,24 @@
             // 
             // txt_malzemeCinsi
             // 
+            this.txt_malzemeCinsi.Enabled = false;
             this.txt_malzemeCinsi.Location = new System.Drawing.Point(197, 287);
             this.txt_malzemeCinsi.Margin = new System.Windows.Forms.Padding(4);
             this.txt_malzemeCinsi.Name = "txt_malzemeCinsi";
             this.txt_malzemeCinsi.Size = new System.Drawing.Size(244, 22);
             this.txt_malzemeCinsi.TabIndex = 64;
+            this.txt_malzemeCinsi.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_malzemeCinsi_KeyPress);
             // 
             // txt_marka
             // 
+            this.txt_marka.Enabled = false;
             this.txt_marka.Location = new System.Drawing.Point(197, 245);
             this.txt_marka.Margin = new System.Windows.Forms.Padding(4);
             this.txt_marka.Name = "txt_marka";
             this.txt_marka.Size = new System.Drawing.Size(244, 22);
             this.txt_marka.TabIndex = 66;
+            this.txt_marka.TextChanged += new System.EventHandler(this.txt_marka_TextChanged);
+            this.txt_marka.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_marka_KeyPress);
             // 
             // label9
             // 
@@ -650,6 +665,7 @@
             // 
             // txt_seriNo
             // 
+            this.txt_seriNo.Enabled = false;
             this.txt_seriNo.Location = new System.Drawing.Point(199, 328);
             this.txt_seriNo.Margin = new System.Windows.Forms.Padding(4);
             this.txt_seriNo.Name = "txt_seriNo";
@@ -674,6 +690,7 @@
             this.txt_cikis.Name = "txt_cikis";
             this.txt_cikis.Size = new System.Drawing.Size(244, 22);
             this.txt_cikis.TabIndex = 74;
+            this.txt_cikis.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_cikis_KeyPress);
             // 
             // label12
             // 
@@ -700,7 +717,7 @@
             this.Controls.Add(this.txt_malzemeCinsi);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.xtraTabControl1);
+            this.Controls.Add(this.stokControl);
             this.Controls.Add(this.xtraScrollableControl1);
             this.Controls.Add(this.simpleButton2);
             this.Controls.Add(this.textBox1);
@@ -741,12 +758,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.popupMenu1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).EndInit();
-            this.xtraTabControl1.ResumeLayout(false);
-            this.xtraTabPage1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.stokControl)).EndInit();
+            this.stokControl.ResumeLayout(false);
             this.xtraTabPage2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControl2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
+            this.xtraTabPage1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -797,7 +814,7 @@
         private DevExpress.XtraBars.BarButtonItem barButtonItem2;
         private DevExpress.XtraBars.BarButtonItem barButtonItem3;
         private DevExpress.XtraEditors.SimpleButton simpleButton2;
-        private DevExpress.XtraTab.XtraTabControl xtraTabControl1;
+        private DevExpress.XtraTab.XtraTabControl stokControl;
         private DevExpress.XtraTab.XtraTabPage xtraTabPage1;
         private DevExpress.XtraTab.XtraTabPage xtraTabPage2;
         private DevExpress.XtraEditors.XtraScrollableControl xtraScrollableControl1;
