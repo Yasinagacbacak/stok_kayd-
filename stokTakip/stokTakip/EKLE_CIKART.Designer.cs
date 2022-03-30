@@ -42,13 +42,15 @@
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label5 = new System.Windows.Forms.Label();
             this.lbl_talepeden = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lbl_stokadi
             // 
             this.lbl_stokadi.AutoSize = true;
             this.lbl_stokadi.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.lbl_stokadi.Location = new System.Drawing.Point(45, 53);
+            this.lbl_stokadi.Location = new System.Drawing.Point(54, 43);
             this.lbl_stokadi.Name = "lbl_stokadi";
             this.lbl_stokadi.Size = new System.Drawing.Size(173, 23);
             this.lbl_stokadi.TabIndex = 0;
@@ -172,12 +174,34 @@
             this.lbl_talepeden.TabIndex = 19;
             this.lbl_talepeden.Text = "------";
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.label6.Location = new System.Drawing.Point(197, 114);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(21, 24);
+            this.label6.TabIndex = 21;
+            this.label6.Text = "0";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.label7.Location = new System.Drawing.Point(83, 114);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(81, 24);
+            this.label7.TabIndex = 20;
+            this.label7.Text = "MARKA";
+            // 
             // EKLE_CIKART
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.ClientSize = new System.Drawing.Size(443, 499);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.lbl_talepeden);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.dateTimePicker1);
@@ -217,5 +241,7 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label lbl_talepeden;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
     }
 }

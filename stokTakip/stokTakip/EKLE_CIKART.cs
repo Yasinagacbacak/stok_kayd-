@@ -19,20 +19,20 @@ namespace stokTakip
         }
         sqlBaglantisi baglantim = new sqlBaglantisi();
         static public string kullanıcıadi;
-        public string s, b;
+        public string s, b,mrk;
         public int m;
-
+        
 
         private void EKLE_CIKART_Load(object sender, EventArgs e)
         {
             depoGoruntule frm1 = new depoGoruntule();
-          
+            label6.Text = mrk.ToString();
             lbl_stokadi.Text = s.ToString();
             lbl_birim.Text = b.ToString();
             lbl_mevcut.Text = m.ToString();
             //kullanıcı adını yazdırmak için;
             lbl_talepeden.Text = kullanıcıadi;
-
+            
           
 
 
@@ -40,9 +40,7 @@ namespace stokTakip
         // sadece rakam yazılabilir
         private void txt_ihtiyac_KeyPress(object sender, KeyPressEventArgs e)
         {
-            {
-                e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
-            }
+            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != ',';
         }
 
         private void EKLE_CIKART_KeyDown(object sender, KeyEventArgs e)
@@ -69,12 +67,12 @@ namespace stokTakip
                     "@durumu,@tarih,@talepEden)", baglantim.baglanti());
                 kaydet.Parameters.Add("@stokAdi", SqlDbType.NVarChar, 100).Value = lbl_stokadi.Text;
                 kaydet.Parameters.Add("@projeAdi", SqlDbType.NVarChar, 50).Value = txt_projeadi.Text;
-                kaydet.Parameters.Add("@ihtiyac", SqlDbType.Int).Value = txt_ihtiyac.Text;
+                kaydet.Parameters.Add("@ihtiyac", SqlDbType.Float).Value = txt_ihtiyac.Text;
                 kaydet.Parameters.Add("@birim", SqlDbType.NVarChar, 50).Value = lbl_birim.Text;
                 kaydet.Parameters.Add("@durumu", SqlDbType.NChar, 50).Value = "BEKLEMEDE";
                 kaydet.Parameters.Add("@tarih", SqlDbType.Date).Value = dateTimePicker1.Value;
                 kaydet.Parameters.Add("@talepEden", SqlDbType.NVarChar, 50).Value = lbl_talepeden.Text;
-
+                kaydet.Parameters.Add("@marka", SqlDbType.NVarChar, 50).Value = label6.Text;
                 try
                 {
                     kaydet.ExecuteNonQuery();

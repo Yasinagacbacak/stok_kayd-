@@ -46,7 +46,6 @@ namespace stokTakip
             gridView1.Columns["ihtiyac"].Caption = "İHTİYAÇ";
             gridView1.Columns["talepEden"].Caption = "TALEP EDEN";
             gridView1.Columns["durumu"].Caption = "DURUMU";
-         
             gridView1.Columns["marka"].Caption = "MARKA";
 
             gridView1.OptionsBehavior.Editable = false;
@@ -81,7 +80,7 @@ namespace stokTakip
         private void simpleButton2_Click(object sender, EventArgs e)
         {
 
-            
+
             listele_talep();
             if (txt_id.Text == "")
             {
@@ -89,7 +88,7 @@ namespace stokTakip
             }
             else
             {
-              //  txt_id.Text = gridView1.GetFocusedRowCellValue("ID").ToString();
+                //  txt_id.Text = gridView1.GetFocusedRowCellValue("ID").ToString();
 
                 SqlCommand silsorgusu = new SqlCommand("delete from StokTalebi where ID='" + txt_id.Text + "'", baglantim.baglanti());
 
@@ -98,7 +97,7 @@ namespace stokTakip
                 baglantim.baglanti().Close();
                 txt_id.Text = "";
             }
-            
+
             listele_talep();
         }
 
@@ -107,7 +106,7 @@ namespace stokTakip
         private void gridControl1_Click(object sender, EventArgs e)
         {
             txt_id.Text = gridView1.GetFocusedRowCellValue("ID").ToString();
-        } 
+        }
 
         // gridview i boyar  rowstyleye gridiview in yıldırım işaretinde bulabilirsin
 
@@ -123,7 +122,7 @@ namespace stokTakip
                     if (durum == "BEKLEMEDE")
                     {
                         e.Appearance.BackColor = Color.Yellow;
-                       // e.Appearance.BackColor2 = Color.Yellow;
+                        // e.Appearance.BackColor2 = Color.Yellow;
                     }
                     else if (durum == "RED")
                     {

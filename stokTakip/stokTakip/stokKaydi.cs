@@ -143,21 +143,25 @@ namespace stokTakip
         private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
         {
             {
-                e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
+                e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != ',';
+
+                {
+                    e.Handled = true;
+                }
             }
         }
 
-
+        // yazı girilmez sayı ve virgül girilir ondaklıklı sayılar için bu kod lazım
         private void textBox3_KeyPress(object sender, KeyPressEventArgs e)
         {
-            {
-                e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
-            }
+            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != ',';
+
         }
 
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
-            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
+            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != ',';
+
         }
         //kaydet butonu
         private void btn_kaydet_Click(object sender, EventArgs e)
@@ -239,8 +243,8 @@ namespace stokTakip
                 kaydet.Parameters.Add("@parcaStokAdi", SqlDbType.NVarChar, 100).Value = txt_stokAdi.Text;
                 kaydet.Parameters.Add("@malzemeCinsi", SqlDbType.NVarChar, 100).Value = cb_malzeme.Text;
                 kaydet.Parameters.Add("@uzunluk", SqlDbType.NVarChar, 50).Value = txt_uzunluk.Text;
-                kaydet.Parameters.Add("@miktar", SqlDbType.NVarChar, 50).Value = txt_miktar.Text;
-                kaydet.Parameters.Add("@ihtiyac", SqlDbType.NVarChar, 50).Value = txt_ihtiyac.Text;
+                kaydet.Parameters.Add("@miktar", SqlDbType.Float ).Value = txt_miktar.Text;
+                kaydet.Parameters.Add("@ihtiyac", SqlDbType.Float ).Value = txt_ihtiyac.Text;
                 kaydet.Parameters.Add("@tedarikci", SqlDbType.NVarChar, 100).Value = cmb_tedarikci.Text;
                 kaydet.Parameters.Add("@tarih", SqlDbType.Date).Value = dateTimePicker1.Value;
                 kaydet.Parameters.Add("birim", SqlDbType.NVarChar, 10).Value = cb_birim.Text;
@@ -258,23 +262,26 @@ namespace stokTakip
                 }
 
 
+                listele_stok();
+                txt_uzunluk.Clear();
+                txt_miktar.Clear();
+                txt_ihtiyac.Clear();
+                txt_stokAdi.Clear();
+                txt_marka.Clear();
+                txt_seriNo.Clear();
+                cmb_tedarikci.Text = "Seçiniz..";
+                cb_altgrup.Text = "Seçiniz..";
+                cb_proses.Text = "Seçiniz..";
+                cb_malzeme.Text = "Seçiniz..";
+                cb_grup.Text = "Seçiniz..";
+
+
             }
             else
             {
                 MessageBox.Show("kırmızı alanları gözden geçir");
             }
-            listele_stok();
-            txt_uzunluk.Clear();
-            txt_miktar.Clear();
-            txt_ihtiyac.Clear();
-            txt_stokAdi.Clear();
-            txt_marka.Clear();
-            txt_seriNo.Clear();
-            cmb_tedarikci.Text = "Seçiniz..";
-            cb_altgrup.Text = "Seçiniz..";
-            cb_proses.Text = "Seçiniz..";
-            cb_malzeme.Text = "Seçiniz..";
-            cb_grup.Text = "Seçiniz..";
+       
 
         }
         //GRİD CONTROL ÜZERİNE CİF TIKLIYARAK TEXTBOXLARA YAZDIRMAK
@@ -317,8 +324,8 @@ namespace stokTakip
                 guncellekomutu.Parameters.Add("@parcaStokAdi", SqlDbType.NVarChar, 100).Value = txt_stokAdi.Text;
                 guncellekomutu.Parameters.Add("@malzemeCinsi", SqlDbType.NVarChar, 100).Value = cb_malzeme.Text;
                 guncellekomutu.Parameters.Add("@uzunluk", SqlDbType.NVarChar, 50).Value = txt_uzunluk.Text;
-                guncellekomutu.Parameters.Add("@miktar", SqlDbType.Int).Value = txt_miktar.Text;
-                guncellekomutu.Parameters.Add("@ihtiyac", SqlDbType.Int).Value = txt_ihtiyac.Text;
+                guncellekomutu.Parameters.Add("@miktar", SqlDbType.Float).Value = txt_miktar.Text;
+                guncellekomutu.Parameters.Add("@ihtiyac", SqlDbType.Float).Value = txt_ihtiyac.Text;
                 guncellekomutu.Parameters.Add("@tedarikci", SqlDbType.NVarChar, 100).Value = cmb_tedarikci.Text;
                 guncellekomutu.Parameters.Add("@tarih", SqlDbType.Date).Value = dateTimePicker1.Text;
                 guncellekomutu.Parameters.Add("@birim", SqlDbType.NVarChar, 10).Value = cb_birim.Text;
@@ -378,8 +385,8 @@ namespace stokTakip
         {
 
             GridView view = sender as GridView;
-            int MİKTAR = Convert.ToInt32(view.GetRowCellValue(e.RowHandle, "miktar"));
-            int İHTİYAC = Convert.ToInt32(view.GetRowCellValue(e.RowHandle, "ihtiyac"));
+            float MİKTAR = Convert.ToInt32(view.GetRowCellValue(e.RowHandle, "miktar"));
+            float İHTİYAC = Convert.ToInt32(view.GetRowCellValue(e.RowHandle, "ihtiyac"));
             if (MİKTAR >= İHTİYAC)
             {
 

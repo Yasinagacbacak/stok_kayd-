@@ -20,10 +20,11 @@ namespace stokTakip
             InitializeComponent();
         }
         sqlBaglantisi baglantim = new sqlBaglantisi();
-
+        public string marka;
         public string stokadi;
         public string birim;
         public int miktar;
+        
 
         //listele
         public void listele_Kisi()
@@ -185,8 +186,10 @@ namespace stokTakip
             yeni.s = gridView1.GetFocusedRowCellValue("parcaStokAdi").ToString();
             yeni.b = gridView1.GetFocusedRowCellValue("birim").ToString();
            yeni.m = int.Parse(gridView1.GetFocusedRowCellValue("miktar").ToString());
+            yeni.mrk = gridView1.GetFocusedRowCellValue("marka").ToString();
             yeni.Show();
 
+            
    
         }
 

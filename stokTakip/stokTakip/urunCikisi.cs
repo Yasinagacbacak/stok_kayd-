@@ -59,7 +59,7 @@ namespace stokTakip
 
         }
 
-        
+
 
         private void btn_kaydet_Click(object sender, EventArgs e)
         {
@@ -72,7 +72,7 @@ namespace stokTakip
                     "@tesimAlan,@birim,@tarih,@acıklama,@eskisiİstenicek,@İstenmeyecek,@seriNo,@marka)", baglantım.baglanti());
                 kaydet.Parameters.Add("@projeNO", SqlDbType.NVarChar, 10).Value = txt_projeNo.Text;
                 kaydet.Parameters.Add("@parcaStokAdi", SqlDbType.NVarChar, 50).Value = txt_stokAdi.Text;
-                kaydet.Parameters.Add("@miktar", SqlDbType.Int).Value = txt_cikis.Text;
+                kaydet.Parameters.Add("@miktar", SqlDbType.Float).Value = txt_cikis.Text;
                 kaydet.Parameters.Add("@tur", SqlDbType.NVarChar, 10).Value = cmb_tur.Text;
                 kaydet.Parameters.Add("@tesimAlan", SqlDbType.NVarChar, 50).Value = txt_teslimAlan.Text;
                 kaydet.Parameters.Add("@birim", SqlDbType.NVarChar, 50).Value = cmb_birim.Text;
@@ -112,14 +112,15 @@ namespace stokTakip
                 {
                     kaydet.Parameters.Add("@İstenmeyecek", SqlDbType.NVarChar, 50).Value = "";
                 }
+
                 //bu değişken stoktan düşmek için gerekli
-                int stokcıkısı;
-                stokcıkısı = int.Parse(txt_miktar.Text) - int.Parse(txt_cikis.Text);
-                int miktar;
-                miktar = int.Parse(txt_miktar.Text);
-                int cikis;
-                cikis = int.Parse(txt_cikis.Text);
-       
+                float stokcıkısı;
+                stokcıkısı = float.Parse(txt_miktar.Text) - float.Parse(txt_cikis.Text);
+                float miktar;
+                miktar = float.Parse(txt_miktar.Text);
+                float cikis;
+                cikis = float.Parse(txt_cikis.Text);
+               
 
                 if (miktar >= cikis)
                 // sql stok kartı tablosundan ürün cıkışı yapmak miktar azaltmak için;
@@ -128,7 +129,7 @@ namespace stokTakip
 
                     guncellekomutu.Parameters.AddWithValue("@id", Convert.ToInt32(textBox2.Text));
 
-                    guncellekomutu.Parameters.Add("@miktar", SqlDbType.Int).Value = stokcıkısı;
+                    guncellekomutu.Parameters.Add("@miktar", SqlDbType.Float).Value = stokcıkısı;
 
                     guncellekomutu.ExecuteNonQuery();
                     try
@@ -156,11 +157,11 @@ namespace stokTakip
             }
             listele_urunCikisi();
             listele_stok();
-           
-            
-     
-       
-            
+
+
+
+
+
 
 
 
@@ -199,11 +200,11 @@ namespace stokTakip
             btn_kaydet.Enabled = false;
             simpleButton1.Enabled = false;
             simpleButton3.Enabled = false;
-          
+
 
 
         }
-    
+
         //gridviewe çif tık yaparak texboxlara yazdırmak
         private void gridControl1_DoubleClick(object sender, EventArgs e)
         {
@@ -221,7 +222,7 @@ namespace stokTakip
             txt_marka.Text = gridView1.GetFocusedRowCellValue("marka").ToString();
 
             textBox1.Text = gridView1.GetFocusedRowCellValue("ID").ToString();
-        ;
+            ;
             if (gridView1.GetFocusedRowCellValue("eskisiİstenicek").ToString() == rb_kırıldı_bozuldu.Text)
             {
                 rb_kırıldı_bozuldu.Checked = true;
@@ -310,13 +311,13 @@ namespace stokTakip
                 guncellekomutu.Parameters.AddWithValue("@ID", Convert.ToInt32(textBox1.Text));
                 guncellekomutu.Parameters.Add("@projeNO", SqlDbType.NVarChar, 10).Value = txt_projeNo.Text;
                 guncellekomutu.Parameters.Add("@parcaStokAdi", SqlDbType.NVarChar, 50).Value = txt_stokAdi.Text;
-                guncellekomutu.Parameters.Add("@miktar", SqlDbType.Int).Value = txt_cikis.Text;
+                guncellekomutu.Parameters.Add("@miktar", SqlDbType.Float).Value = txt_cikis.Text;
                 guncellekomutu.Parameters.Add("@tur", SqlDbType.NVarChar, 15).Value = cmb_tur.Text;
                 guncellekomutu.Parameters.Add("@tesimAlan", SqlDbType.NVarChar, 50).Value = txt_teslimAlan.Text;
                 guncellekomutu.Parameters.Add("@birim", SqlDbType.NVarChar, 50).Value = cmb_birim.Text;
                 guncellekomutu.Parameters.Add("@tarih", SqlDbType.Date).Value = dateTimePicker1.Text;
                 guncellekomutu.Parameters.Add("@acıklama", SqlDbType.NVarChar, 200).Value = txt_acıklama.Text;
-                guncellekomutu.Parameters.Add("@seriNo", SqlDbType.Int ).Value =int.Parse(txt_seriNo.Text);
+                guncellekomutu.Parameters.Add("@seriNo", SqlDbType.Int).Value = int.Parse(txt_seriNo.Text);
                 guncellekomutu.Parameters.Add("@marka", SqlDbType.NVarChar, 50).Value = txt_marka.Text;
 
                 if (rb_kırıldı_bozuldu.Checked == true)
@@ -370,10 +371,14 @@ namespace stokTakip
                 MessageBox.Show("Güncelleme işlemi BAŞARISIZDIR ! lütfen Boşlukları doldurunuz !", "Optimak stok takip uygulaması", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
-        //yazı girilemez yapar
+        //yazı girilemez yapar ondalıklı sayı girilebilir
         private void txt_miktar_KeyPress(object sender, KeyPressEventArgs e)
         {
-            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
+            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != ',';
+
+            {
+                e.Handled = true;
+            }
         }
 
 
@@ -476,7 +481,7 @@ namespace stokTakip
             txt_marka.Text = gridView2.GetFocusedRowCellValue("marka").ToString();
             txt_seriNo.Text = gridView2.GetFocusedRowCellValue("seriNo").ToString();
         }
-        
+
         // yazı girilmez yapar
         private void txt_seriNo_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -503,10 +508,7 @@ namespace stokTakip
             e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
         }
 
-        private void txt_cikis_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
-        }
+
 
         private void txt_marka_TextChanged(object sender, EventArgs e)
         {
@@ -524,7 +526,7 @@ namespace stokTakip
 
         private void stokControl_Click(object sender, EventArgs e)
         {
-            if (stokControl.SelectedTabPage==xtraTabPage1)
+            if (stokControl.SelectedTabPage == xtraTabPage1)
             {
                 btn_kaydet.Enabled = false;
 
@@ -547,7 +549,10 @@ namespace stokTakip
 
         }
 
-
-
+        private void txt_cikis_KeyPress(object sender, KeyPressEventArgs e)
+        {
+         
+            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != ',';
+        }
     }
 }

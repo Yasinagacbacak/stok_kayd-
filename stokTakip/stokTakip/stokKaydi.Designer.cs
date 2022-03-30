@@ -30,7 +30,7 @@ namespace stokTakip
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(stokKaydi));
-            DevExpress.XtraGrid.GridFormatRule gridFormatRule2 = new DevExpress.XtraGrid.GridFormatRule();
+            DevExpress.XtraGrid.GridFormatRule gridFormatRule1 = new DevExpress.XtraGrid.GridFormatRule();
             this.btn_kaydet = new DevExpress.XtraEditors.SimpleButton();
             this.label1 = new System.Windows.Forms.Label();
             this.cb_altgrup = new System.Windows.Forms.ComboBox();
@@ -170,6 +170,7 @@ namespace stokTakip
             this.txt_uzunluk.Name = "txt_uzunluk";
             this.txt_uzunluk.Size = new System.Drawing.Size(244, 22);
             this.txt_uzunluk.TabIndex = 3;
+            this.txt_uzunluk.Text = "0";
             this.txt_uzunluk.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
             // 
             // label5
@@ -218,6 +219,7 @@ namespace stokTakip
             this.txt_ihtiyac.Name = "txt_ihtiyac";
             this.txt_ihtiyac.Size = new System.Drawing.Size(244, 22);
             this.txt_ihtiyac.TabIndex = 3;
+            this.txt_ihtiyac.Text = "0";
             this.txt_ihtiyac.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox3_KeyPress);
             // 
             // txt_stokAdi
@@ -329,10 +331,10 @@ namespace stokTakip
             // 
             // gridView1
             // 
-            gridFormatRule2.ApplyToRow = true;
-            gridFormatRule2.Name = "Format0";
-            gridFormatRule2.Rule = null;
-            this.gridView1.FormatRules.Add(gridFormatRule2);
+            gridFormatRule1.ApplyToRow = true;
+            gridFormatRule1.Name = "Format0";
+            gridFormatRule1.Rule = null;
+            this.gridView1.FormatRules.Add(gridFormatRule1);
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsPrint.EnableAppearanceEvenRow = true;
